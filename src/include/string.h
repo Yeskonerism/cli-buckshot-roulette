@@ -6,63 +6,30 @@
 #define BUCKSHOT_ROULETTE_STRING_H
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 // custom string type
-typedef char* string;
+typedef const char* string;
 
 // initialise string
-string str(const char* value) {
-    char* mem = malloc(strlen(value) + 1);
-    if(mem == NULL) return NULL;
-
-    strcpy(mem, value);
-
-    return mem;
-}
-
-// initialise string
-string str_buff(const char* value, int bufferSize) {
-    char* mem = malloc(bufferSize);
-    if(mem == NULL) return NULL;
-
-    strcpy(mem, value);
-
-    return mem;
-}
+string str(const char* value);
+string str_buff(const char* value, int bufferSize);
 
 // free string vars from memory
-void str_free(char* str) {
-    free(str);
-}
+void str_free(char* str);
 
 // copy one string to a separate destination
-void str_copy(string source, string* dest) {
-    *dest = str(source);
-}
+void str_copy(string source, string* dest);
 
 // return length of given string
-int str_length(const char* value) {
-    int length = 0;
-
-    for(int i = 0; value[i] != '\0'; i++) {
-        length++;
-    }
-
-    return length;
-}
+int str_length(const char* value);
 
 // compare 2 strings together and return 1 if they are the same
-int str_equals(const char* str1, const char* str2) {
-    if(str_length(str1) != str_length(str2))
-        return 0;
+int str_equals(const char* str1, const char* str2);
 
-    for(int i = 0; str1[i] != '\0'; i++) {
-        if(str1[i] != str2[i])
-            return 0;
-    }
-
-    return 1;
-}
+// get input from user and return as string
+string str_input(string prompt);
+string str_input_buff(string prompt, int bufferSize);
 
 #endif //BUCKSHOT_ROULETTE_STRING_H

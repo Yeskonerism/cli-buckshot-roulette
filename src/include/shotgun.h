@@ -5,41 +5,27 @@
 #ifndef BUCKSHOT_ROULETTE_SHOTGUN_H
 #define BUCKSHOT_ROULETTE_SHOTGUN_H
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+
+typedef struct Game Game;
 
 typedef struct {
     int chambers[6];
     int currentChamber;
+
+    Game *game;
 } Shotgun;
 
-void nextChamber(Shotgun* s) {
-    if(s->currentChamber < 6) {
-        s->currentChamber++;
-    }
-    else printf("Shotgun complete\n");
-}
+void randomiseChambers(Shotgun* s);
 
-void randomiseChambers(Shotgun* s) {
-    //int maxChamber = rand() % 6 + 2;
-    //s->chambers = int[maxChamber];
+void newShotgun(Shotgun* s);
 
-    srand(time(NULL));
+void nextChamber(Shotgun* s);
 
-    for(int i = 0; i < 6; i++) {
-        s->chambers[i] = rand() % 2;
-    }
-}
+void printChambers (Shotgun s);
 
-void newShotgun(Shotgun* s) {
-    randomiseChambers(s);
-    s->currentChamber = 0;
-}
-
-void printChambers (Shotgun s) {
-    for (int i = 0; i < 6; i++) {
-        printf("Chamber %d: %d\n", i, s.chambers[i]);
-    }
-}
+int numberLives(Shotgun s);
 
 #endif //BUCKSHOT_ROULETTE_SHOTGUN_H

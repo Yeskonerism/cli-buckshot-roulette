@@ -7,35 +7,32 @@
 
 #include "player.h"
 #include "shotgun.h"
+#include "dealer.h"
 
-typedef struct {
+typedef enum {
+    PLAYER,
+    DEALER
+}  GameTurn;
+
+typedef struct Game {
     Shotgun shotgun;
     Player player;
+    Dealer dealer;
+
     int gameLoop;
-} Game;
 
-void endGame(Game* g) {
-    g->gameLoop = 0;
-}
+    GameTurn turn;
+};
 
-void gameLoop(Game* g) {
-    while(g->gameLoop) {
-        printPlayer(g->player);
-        printChambers(g->shotgun);
+void newGame(Game* g);
+void gameLoop(Game* g);
+void endGame(Game* g);
 
-        endGame(g);
-    }
-}
+void switchTurn(Game* g);
 
-void newGame(Game* g) {
-    g->gameLoop = 1;
+void playerTurn(Game* g);
+void dealerTurn(Game* g);
 
-    newShotgun(&g->shotgun);
-
-    string playerName = getPlayerName();
-    initPlayer(&g->player, playerName, 5);
-
-    gameLoop(g);
-}
+void checkEndCase(Game *g);
 
 #endif //BUCKSHOT_ROULETTE_GAME_H
