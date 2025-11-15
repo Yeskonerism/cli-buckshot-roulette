@@ -22,8 +22,8 @@ string str_buff(const char* value, int bufferSize) {
     return mem;
 }
 
-void str_free(char* str) {
-    free(str);
+void str_free(const char* str) {
+    free((void*)str);
 }
 
 void str_copy(string source, string* dest) {

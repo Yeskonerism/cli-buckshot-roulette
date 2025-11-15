@@ -33,20 +33,10 @@ void nextChamber(Shotgun* s) {
 }
 
 void printChambers (Shotgun s) {
-    int chambersOrganised[6];
-    int chambersOrganisedIndex = 0;
-
     int blankCount = 0, bulletCount = 0;
 
     for (int i = 0; i < 6; i++) {
         if (s.chambers[i] == 1) {
-            chambersOrganised[chambersOrganisedIndex] = s.chambers[i];
-            chambersOrganisedIndex++;
-        }
-    }
-
-    for (int i = 0; i < 6; i++) {
-        if (chambersOrganised[i] == 1) {
             bulletCount++;
         } else {
             blankCount++;

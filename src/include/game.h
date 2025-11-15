@@ -22,7 +22,7 @@ typedef struct Game {
     int gameLoop;
 
     GameTurn turn;
-};
+} Game;
 
 void newGame(Game* g);
 void gameLoop(Game* g);

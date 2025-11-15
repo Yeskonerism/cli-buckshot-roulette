@@ -17,7 +17,7 @@ string str(const char* value);
 string str_buff(const char* value, int bufferSize);
 
 // free string vars from memory
-void str_free(char* str);
+void str_free(const char* str);
 
 // copy one string to a separate destination
 void str_copy(string source, string* dest);

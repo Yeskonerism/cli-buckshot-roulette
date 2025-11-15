@@ -20,6 +20,9 @@ void newGame(Game* g) {
         } else if (str_equals(playerName, "dealer")) {
             printf("There can only be one...\n");
         }
+
+        str_free(playerName);
+
         playerName = str_input("Enter player name");
     }
 
@@ -53,10 +56,12 @@ void gameLoop(Game* g) {
 
 void endGame(Game* g) {
     g->gameLoop = 0;
+
+    str_free(g->player.name);
 }
 
 void playerTurn(Game* g) {
-    const string input = str_buff(str_input_buff("Shoot self or dealer? [s/d]: ", 8), 8);
+    const string input = str_input_buff("Shoot self or dealer? [s/d]: ", 8);
 
     if (str_equals(input, "s")) {
         if (g->shotgun.chambers[g->shotgun.currentChamber] == 1) {
@@ -82,6 +87,8 @@ void playerTurn(Game* g) {
     } else {
         printf("Invalid input\n");
     }
+
+    str_free(input);
 }
 
 void dealerTurn(Game* g) {
